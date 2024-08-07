@@ -33,9 +33,9 @@ Route::get('profile/',[HomeController::class,'profile'])->middleware('auth')->na
 Route::get('login',[AuthController::class,'login'])->middleware('guest')->name('login');
 Route::post('login',[AuthController::class,'processLogin'])->name('auth.login');
 Route::post('logout',[AuthController::class,'logout'])->name('auth.logout');
-Route::get('register',[AuthController::class,'register'])->name('register');
+Route::get('register',[AuthController::class,'register'])->middleware('guest')->name('register');
 Route::post('register',[AuthController::class,'processRegister'])->name('submit.register');
-Route::get('forget',[AuthController::class,'forget'])->name('forget');
+Route::get('forget',[AuthController::class,'forget'])->middleware('guest')->name('forget');
 Route::post('forget',[AuthController::class,'processForget'])->name('submit.forget');
 Route::get('reset/{token}/{id}',[AuthController::class,'resetPass'])->name('resetPass');
 Route::post('reset',[AuthController::class,'processPass'])->name('processPass');
