@@ -90,7 +90,8 @@
 
       <h3 class="tile-title">Cập nhật</h3>
       <div class="tile-body">
-        <form class="row" action="{{route('admin.Users.update',$user->id)}}" enctype="multipart/form-data" method="POST" >
+        <form class="row" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data" method="POST" >
+          @method('PUT')
           @csrf
           <div class="form-group col-md-4">
             <label class="control-label">Họ và tên</label>
@@ -118,10 +119,10 @@
               <input type="file" id="uploadfile" style="display: none" name="image" />
               <button type="button" class="bx Choicefile bx-upload"  onclick="document.getElementById('uploadfile').click();"></button>
             </div>
-            <div class="col-4"><img src="assets/img/{{$user->image}}" class="w-90" alt=""></div>
+            <img src="assets/img/{{$user->image}}" class="w-25" alt="">
           </div>
           <div  class="form-group col-md-12">
-            <button class="btn btn-save" type="submit">Tạo mới</button>
+            <button class="btn btn-save" type="submit">Cập nhật</button>
           </div>
         </form>
       </div>

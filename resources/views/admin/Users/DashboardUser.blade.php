@@ -19,7 +19,7 @@
         <div class="row element-button">
           <div class="col-sm-2">
 
-            <a class="btn btn-add btn-sm" href="{{route('admin.Users.Add')}}" title="Thêm"><i class="fas fa-plus"></i>
+            <a class="btn btn-add btn-sm" href="{{route('user.create')}}" title="Thêm"><i class="fas fa-plus"></i>
               Tạo mới người dùng</a>
           </div>
           <div class="col-sm-2">
@@ -78,11 +78,11 @@
                 <button class="btn btn-primary btn-sm trash" title="Xóa" data-id="{{ $user->id }}" >
                   <i class="fas fa-trash-alt"></i>
                 </button>        
-                <form action="{{route('admin.user.destroy',$user->id)}}" id="delete-form-{{$user->id}}" method="post" style="display: none"  >
+                <form action="{{route('user.destroy',$user->id)}}" id="delete-form-{{$user->id}}" method="post" style="display: none"  >
                   @csrf
                   @method('DELETE')
                 </form>
-                <a href="{{route('admin.Users.edit',$user->id)}}">
+                <a href="{{route('user.edit',$user->id)}}">
                   <button class="btn btn-primary btn-sm edit" title="Sửa" id="show-emp" data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i>
                   </button>
                 </a>

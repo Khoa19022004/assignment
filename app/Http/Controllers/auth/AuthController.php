@@ -79,7 +79,12 @@ class AuthController extends Controller
         return view('forget');
     }
     public function processForget(ForgetRequest $request){
-        
+        $request->validate([
+            'email'=>'required|exists:users,email'
+        ],[
+             'email.required'=>"Vui lòng nhập email ",
+            'email.exists'=>"Email này chưa được đăng kí"
+        ]);
         $token=strtoupper(Str::random(10));
         $user=User::where('email',$request->email)->first();
         DB::table('password_resets')->insert([
@@ -90,9 +95,9 @@ class AuthController extends Controller
         Mail::send('auth.directForm',compact('token','user'),function($message) use ($user){
             $message->to($user->email,$user->name);
             $message->subject('Đặt lại mật khẩu');
-            return back()->with('success','Gửi về thành công');
+            // return back()->with('message','Gửi về thành công');
         });
-        return back()->with('success','Gửi về thất bại');
+        return back()->with('message','Gửi về thành công');
     }
     public function resetPass($token,$id){
         return view('auth.reset',['token'=>$token,'id_user'=>$id]);

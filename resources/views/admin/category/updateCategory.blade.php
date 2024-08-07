@@ -90,8 +90,9 @@
       <h3 class="tile-title">Cập nhật danh mục</h3>
       <div class="tile-body">
         
-        <form class="row" action="{{route('admin.category.processUpdate',$category->id)}}" enctype="multipart/form-data"  method="POST" >
+        <form class="row" action="{{route('category.update',$category->id)}}" enctype="multipart/form-data"  method="POST" >
           @csrf
+          @method('PUT')
           <div class="form-group col-md-12">
             <label class="control-label">Tên loại</label>
             <input class="form-control" type="text" name="ten_loai" value="{{$category->ten_loai}}" >

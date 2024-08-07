@@ -90,7 +90,7 @@
 
       <h3 class="tile-title">Tạo mới </h3>
       <div class="tile-body">
-        <form class="row" action="{{route('admin.Users.store')}}" enctype="multipart/form-data" method="POST" >
+        <form class="row" action="{{route('user.store')}}" enctype="multipart/form-data" method="POST" >
           @csrf
           <div class="form-group col-md-4">
             <label class="control-label">Họ và tên</label>

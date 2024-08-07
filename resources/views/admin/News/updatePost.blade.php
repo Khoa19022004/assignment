@@ -121,7 +121,8 @@
             </div>
           </div>
           
-          <form action="{{route('admin.new.processUpdate',$post->id)}}" method="POST" enctype="multipart/form-data"> 
+          <form action="{{route('post.update',$post->id)}}" method="POST" enctype="multipart/form-data">
+            @method('PUT') 
             @csrf
             <div class="form-group ">
               <label class="control-label">Tiêu đề</label>

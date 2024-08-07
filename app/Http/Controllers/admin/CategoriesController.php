@@ -45,7 +45,7 @@ class CategoriesController extends Controller
                 'image'=>$imagePath??null
             ]);
     
-            return redirect()->route('admin.category.add')->with('success','Thêm danh mục thành công');
+            return redirect()->route('category.create')->with('success','Thêm danh mục thành công');
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoriesController extends Controller
             $category->image=$imagePath;
         }
         $category->save();
-        return redirect()->route('admin.category.update',$category::find($id))->with('success','Cập nhật thành công');
+        return redirect()->route('category.edit',$category::find($id))->with('success','Cập nhật thành công');
     }
 
     /**
@@ -87,10 +87,10 @@ class CategoriesController extends Controller
     {
         try {
             $category->delete();
-            return redirect()->route('admin.category')
+            return redirect()->route('category.index')
                              ->with('success', 'Danh mục đã được xóa thành công.');
         } catch (Exception $e) {
-            return redirect()->route('admin.category')
+            return redirect()->route('category.index')
                              ->withErrors(['error'=>'Không thể xóa danh mục vì có bài viết liên quan.']);
         }
     }

@@ -69,13 +69,10 @@
                 <button class="btn btn-primary btn-sm trash" title="Xóa" data-id="{{ $comment->id }}" >
                   <i class="fas fa-trash-alt"></i>
                 </button>        
-                <form action="{{route('admin.comment.destroy',$comment->id)}}" id="delete-form-{{$comment->id}}" method="post" style="display: none"  >
+                <form action="{{route('comment.destroy',$comment->id)}}" id="delete-form-{{$comment->id}}" method="post" style="display: none"  >
                   @csrf
                   @method('DELETE')
                 </form>
-                <button class="btn btn-primary btn-sm edit" title="Sửa" id="show-emp" data-toggle="modal"
-                  data-target="#ModalUP"><i class="fas fa-edit"></i>
-                </button>
               </td>
             </tr>
             @endforeach

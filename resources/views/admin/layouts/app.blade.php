@@ -55,26 +55,26 @@
         </a>
       </li>
       <li >
-        <a class="app-menu__item "  href="{{route('admin.Users')}}" >
+        <a class="app-menu__item "  href="{{route('user.index')}}" >
           <i class='app-menu__icon bx bx-user-voice'></i>
           <span class="app-menu__label">Quản lý khách hàng</span>
         </a>
       </li>
       <li >
-        <a class="app-menu__item "  href="{{route('admin.category')}}" >
+        <a class="app-menu__item "  href="{{route('category.index')}}" >
           <i class='app-menu__icon bx bx-user-voice'></i>
           <span class="app-menu__label">Quản lý danh mục</span>
         </a>
       </li>
       <li >
       <li >
-        <a class="app-menu__item "  href="{{route('admin.News')}}" >
+        <a class="app-menu__item "  href="{{route('post.index')}}" >
           <i class='app-menu__icon bx bx-user-voice'></i>
           <span class="app-menu__label">Quản lý tin tức</span>
         </a>
       </li>
       <li >
-        <a class="app-menu__item "  href="{{route('admin.comment')}}" >
+        <a class="app-menu__item "  href="{{route('comment.index')}}" >
           <i class='app-menu__icon bx bx-user-voice'></i>
           <span class="app-menu__label">Quản lý bình luận</span>
         </a>

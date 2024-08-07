@@ -37,15 +37,20 @@ class PostsController extends Controller
         if($request->hasFile('image')){
             $imagePath = $request->file('image')->store('','tuTao');
         }
-        Posts::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'id_user'=>Auth::id(),
-            'id_category'=>$request->id_category,
-            'content'=>$request->content,
-            'image'=>$imagePath??null,
-        ]);
-        return back()->with('success','Thêm thành công');
+        try{
+            Posts::create([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'id_user'=>Auth::id(),
+                'id_category'=>$request->id_category,
+                'content'=>$request->content,
+                'image'=>$imagePath??null,
+            ]);
+            return back()->with('success','Thêm thành công');
+        }catch(Exception $e){
+            return back()->withError('error',"Thêm thất bại: $e");
+        }
+       
     }
 
     /**
@@ -74,14 +79,21 @@ class PostsController extends Controller
         if($request->hasFile('image')){
             $imagePath=$request->file('image')->store('','tuTao');
         }
-        Posts::find($id)->update([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'content'=>$request->content,
-            'id_category'=>$request->id_category,
-            'image'=>$imagePath??null
-        ]);
-        return back()->with('success','Cập nhật thành công');
+        try{
+            $post=Posts::find($id);
+            $post->title=$request->title;
+            $post->description=$request->description;
+            $post->content=$request->content;
+            $post->id_category=$request->id_category;
+            if(!empty($imagePath)){
+                $post->image=$imagePath;
+            }
+            $post->save();
+            return back()->with('success','Cập nhật thành công');
+        }catch(Exception $e){
+            return back()->withErrors(['error'=>"Cập nhật thất bại : $e"]);
+        }
+      
     }
 
     /**
@@ -92,9 +104,9 @@ class PostsController extends Controller
         $post=Posts::find($id);
         try{
             $post->delete();
-            return redirect()->route('admin.News')->with('success','Xoá thành công');
+            return redirect()->route('post.index')->with('success','Xoá thành công');
         }catch(Exception $e){
-            return redirect()->route('admin.News')->withErrors(['error'=>'Xoá thất bại']);
+            return redirect()->route('post.index')->withErrors(['error'=>"Xoá thất bại: $e "]);
         }
     }
 }

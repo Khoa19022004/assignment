@@ -91,7 +91,7 @@
       <h3 class="tile-title">Tạo mới </h3>
       <div class="tile-body">
         
-        <form class="row" action="{{route('admin.category.store')}}" enctype="multipart/form-data"  method="POST" >
+        <form class="row" action="{{route('category.store')}}" enctype="multipart/form-data"  method="POST" >
           @csrf
           <div class="form-group col-md-12">
             <label class="control-label">Tên loại</label>
@@ -115,7 +115,7 @@
 
           </div>
           <div  class="form-group col-md-12">
-            <button class="btn btn-save" type="submit">Lưu</button>
+            <button class="btn btn-save" type="submit">Thêm</button>
             <a class="btn btn-cancel" href="">Hủy bỏ</a>
           </div>
         </form>

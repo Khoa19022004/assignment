@@ -17,7 +17,7 @@
       <div class="tile-body">
         <div class="row element-button">
           <div class="col-sm-2">
-            <a class="btn btn-add btn-sm" href="{{route('admin.category.add')}}" title="Thêm"><i class="fas fa-plus"></i>
+            <a class="btn btn-add btn-sm" href="{{route('category.create')}}" title="Thêm"><i class="fas fa-plus"></i>
               Tạo mới danh mục</a>
           </div>
           <div class="col-sm-2">
@@ -69,11 +69,11 @@
                 <button class="btn btn-primary btn-sm trash" title="Xóa" data-id="{{ $category->id }}" >
                   <i class="fas fa-trash-alt"></i>
                 </button>        
-                <form action="{{route('admin.category.destroy',$category->id)}}" id="delete-form-{{$category->id}}" method="post" style="display: none"  >
+                <form action="{{route('category.destroy',$category->id)}}" id="delete-form-{{$category->id}}" method="post" style="display: none"  >
                   @csrf
                   @method('DELETE')
                 </form>
-                <a href="{{route('admin.category.update',$category->id)}}">
+                <a href="{{route('category.edit',$category->id)}}">
                   <button class="btn btn-primary btn-sm edit" title="Sửa" id="show-emp-{{$category->id}}" data-toggle="modal" data-target="#ModalUP">
                     <i class="fas fa-edit"></i>
                   </button>

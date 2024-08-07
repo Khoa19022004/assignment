@@ -22,6 +22,12 @@
                             <span>Địa chỉ Email</span>
                             <input type="email" name="email" class="form-control">
                         </label>
+                        @if ($errors->has('email'))
+                            <div>{{$errors->first('email')}}</div>
+                        @endif
+                        @if (session('message'))
+                            <div>{{session('mesage')}}</div>
+                        @endif
                     </div>
 
       

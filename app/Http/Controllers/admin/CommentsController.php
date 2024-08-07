@@ -62,7 +62,12 @@ class CommentsController extends Controller
     public function destroy(string $id)
     {
         $comment=Comment::find($id);
-        $comment->delete();
-        return back()->with('success','Xoá thành công');
+        try{
+            $comment->delete();
+            return back()->with('success','Xoá thành công');
+        }catch(\Exception $e){
+            return back()->withErrors(['success'=>"Xoá thành công : $e"]);
+        }
+        
     }
 }

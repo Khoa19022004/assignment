@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -51,11 +52,7 @@ class UsersController extends Controller
                 'sex'=>$request->sex??null,
                 'dateBirth'=>$request->dateBirth??null,
             ]);
-            if ($user) {
-                return back()->with('success','Đăng kí người dùng thành công');
-            } else {
-                return redirect()->back()->withErrors(['error' => 'Failed to add user.'])->withInput();
-            }
+            return back()->with('success','Đăng kí người dùng thành công');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Failed to add user: ' . $e->getMessage()])->withInput();
         }
@@ -107,9 +104,14 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $id)
+    public function destroy(string $id)
     {
-        $id->delete();
-        return redirect()->route('admin.Users')->with('success', 'Người dùng đã được xóa thành công.');
+        $user=User::find($id);
+        try{
+            $user->delete();
+            return redirect()->route('user.index')->with('success', 'Người dùng đã được xóa thành công.');
+        }catch(Exception $e){
+            return redirect()->route('user.index')->withErrors(['error'=> "Xoá thất bại : $e"]);
+        }
     }
 }
